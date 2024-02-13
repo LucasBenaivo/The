@@ -1,6 +1,4 @@
-alert("coucou");
 function chargerProduits() {
-    var container = document.getElementById('produitsContainer1').value;
     var xhr = new XMLHttpRequest();
      xhr.open('GET', 'listeParcelles.php', true);
      xhr.onreadystatechange = function() {
@@ -14,17 +12,30 @@ function chargerProduits() {
              }
          }
      };
-     xhr.send('container=' + encodeURIComponent(container));
+     xhr.send();
  }
  
  function afficherProduitsListeDeroulante(produits) {
-     var container = document.getElementById('parcelle').value;
+    var container = document.getElementById('produitsContainer1');
  
      
      produits.forEach(function(produit) {
          var option = document.createElement('option');
          option.value = produit.id;
          option.textContent = produit.numero;
+         container.appendChild(option);
+     });
+ 
+ }
+
+ function afficherProduitsListeDeroulante1(produits) {
+    var container = document.getElementById('parcelle');
+ 
+     
+     produits.forEach(function(produit) {
+         var option = document.createElement('option');
+         option.value = produit.id;
+         option.textContent = produit.nom;
          container.appendChild(option);
      });
  
@@ -49,24 +60,25 @@ function afficherProduits(produits) {
 
 
 function getProduits() {
-    var containerValue = document.getElementById('parcelle').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'test.php', true);
+    xhr.open('GET', 'parcelles.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 var produits = JSON.parse(xhr.responseText);
-                afficherProduits(produits);
+                console.log(produits);
+               afficherProduitsListeDeroulante1(produits);
             } else {
                 console.error('Erreur lors de la requête AJAX : ' + xhr.status);
             }
         }
     };
-    xhr.send('container=' + encodeURIComponent(containerValue));
+    xhr.send();
     
  }
+ getProduits();
 
 
 

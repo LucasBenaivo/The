@@ -16,14 +16,16 @@ function checkLogin($mail,$mdp){
 
 function insertMultipleValues($values) {
     $connexion = connecter();
+    $sqlDel = "TRUNCATE TABLE MoisPoussee";
+    $connexion->query($sqlDel);
 
     foreach ($values as $value) {
         $sql = "INSERT INTO MoisPoussee (idMois) VALUES ($value)";
         if ($connexion->query($sql) !== TRUE) {
-            return "Erreur lors de l'insertion des valeurs : " . $connexion->error;
+            //return "Erreur lors de l'insertion des valeurs : " . $connexion->error;
         }
     }
-    return "Valeurs insérées avec succès";
+    //return "Valeurs insérées avec succès";
 }
 
 
@@ -48,7 +50,7 @@ function createRecord($tableName, $data) {
     if ($conn->query($sql) === TRUE) {
         return "Enregistrement créé avec succès";
     } else {
-        return "Erreur lors de la création de l'enregistrement : " . $conn->error;
+    //    return "Erreur lors de la création de l'enregistrement : " . $conn->error;
     }
 }
 

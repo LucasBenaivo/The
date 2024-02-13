@@ -151,52 +151,49 @@ input[type="submit"] {
   <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Configuration mois</h5>
         <div class="card">
           <div class="card-body">
-          <form id="moisPousseForm">
+          <form action="../TheFinal/mois.php" method="post">
 
-          <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Liste de th&eacute Plant&eacute</label>
-            <select name="parcelle" class="select-personnalise">
-                    <option value="">Ok</option>
-                </select>
-            </div>
 
             <div class="mb-3">
     <div class="checkbox-container">
         <div class="first-half">
-            <input type="checkbox" id="january" name='moisPousse[]' value="1">
+
+            <input type="checkbox" id="january" name='months[]' value="1">
             <label for="january">January</label>
-            <input type="checkbox" id="february" name='moisPousse[]' value="2">
+            <input type="checkbox" id="february" name='months[]' value="2">
             <label for="february">February</label>
-            <input type="checkbox" id="march" name='moisPousse[]' value="3">
+            <input type="checkbox" id="march" name='months[]' value="3">
             <label for="march">March</label>
-            <input type="checkbox" id="april" name='moisPousse[]' value="4">
+            <input type="checkbox" id="april" name='months[]' value="4">
             <label for="april">April</label>
-            <input type="checkbox" id="may" name='moisPousse[]' value="5">
+            <input type="checkbox" id="may" name='months[]' value="5">
             <label for="may">May</label>
-            <input type="checkbox" id="june" name='moisPousse[]' value="6">
+            <input type="checkbox" id="june" name='months[]' value="6">
             <label for="june">June</label>
         </div>
         <br>
         <br>
         <div class="second-half">
-            <input type="checkbox" id="july" name='moisPousse[]' value="7">
+            <input type="checkbox" id="july" name='months[]' value="7">
             <label for="july">July</label>
-            <input type="checkbox" id="august" name='moisPousse[]' value="8">
+            <input type="checkbox" id="august" name='months[]' value="8">
             <label for="august">August</label>
-            <input type="checkbox" id="september" name='moisPousse[]' value="9">
+            <input type="checkbox" id="september" name='months[]' value="9">
             <label for="september">September</label>
-            <input type="checkbox" id="october" name='moisPousse[]' value="10">
+            <input type="checkbox" id="october" name='months[]' value="10">
             <label for="october">October</label>
-            <input type="checkbox" id="november" name='moisPousse[]' value="11">
+            <input type="checkbox" id="november" name='months[]' value="11">
             <label for="november">November</label>
-            <input type="checkbox" id="december" name='moisPousse[]' value="12">
+            <input type="checkbox" id="december" name='months[]' value="12">
             <label for="december">December</label>
         </div>
     </div>
     
-    <button onclick="submitForm()" id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Sauvgarder</button>
+    
             </div>
+            <button id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Sauvgarder</button>
             </form>
+            
         </div>
        </div>   
        <div class="container1">
@@ -239,7 +236,7 @@ input[type="submit"] {
   <script src="../assets/header/assets/js/main.js"></script>
 
    <script>
-     function submitForm() {
+function submitForm() {
     // Collecter les valeurs des cases à cocher sélectionnées
     var moisPousseChecked = [];
     document.querySelectorAll('input[name="moisPousse[]"]:checked').forEach(function(element) {
@@ -247,7 +244,8 @@ input[type="submit"] {
     });
 
     // Préparer les données à envoyer
-    var dataToSend = 'moisPousse=' + encodeURIComponent(moisPousseChecked.join(','));
+    var dataToSend = JSON.stringify({ value:  moisPousseChecked });
+    console.log(dataToSend);
 
     // Créer une nouvelle instance de XMLHttpRequest
     var xhr = new XMLHttpRequest();
@@ -256,13 +254,14 @@ input[type="submit"] {
     xhr.open('POST', '../TheFinal/mois.php', true);
 
     // Définir le type de contenu de la requête
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
 
     // Gérer la réponse du serveur
     xhr.onload = function() {
-        if (xhr.status >=  200 && xhr.status <  300) {
+        if (xhr.status >=   200 && xhr.status <   300) {
             // La requête a réussi
-            console.log('Succès !', xhr.responseText);
+            var response = JSON.parse(xhr.responseText); // Parsez la réponse JSON
+            console.log(response);
         } else {
             // La requête a échoué
             console.log('La requête a échoué !');
@@ -270,8 +269,9 @@ input[type="submit"] {
     };
 
     // Envoyer la requête
-    xhr.send(dataToSend);
+    xhr.send('values='+dataToSend);
 }
+
    </script>
 
   

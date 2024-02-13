@@ -56,8 +56,6 @@ https://templatemo.com/tm-570-chain-app-dev
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="../assets/table/css/style.css">
-  <script src="gestion_the.js"></script>
-  <script>fetchTableData();</script>
 
   </head>
   <style>
@@ -117,29 +115,30 @@ https://templatemo.com/tm-570-chain-app-dev
   <body>
     <?php
         include ("header.html"); ?>
+        <br>
   <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Gestion de Parcelle</h5>
         <div class="card">
           <div class="card-body">
-          <form>
+          <form action="updateParcelles.php" method="post">
           <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Vari&eacutet&eacute Parcelle</label>
-            <select name="parcelle" class="select-personnalise">
-                    <option value="">Ok</option>
+            <select name="parcelle" class="select-personnalise" id="produitsContainer1">
+          
+
                 </select>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Surface</label>
-              <input type="number" class="form-control" id="surface" name ="occupation">
+              <input type="number" class="form-control" id="surface" name ="surface">
             </div>
           <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Vari&eacutet&eacute de th&eacute Plant&eacute</label>
-            <select name="parcelle" class="select-personnalise">
-                    <option value="">Ok</option>
+            <select name="the" class="select-personnalise" id="parcelle">
                 </select>
             </div>
             
+            <button id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Update</button>
             </form>
-            <button id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Updater</button>
         </div>
        </div>     
        <div class="container1">
@@ -149,6 +148,8 @@ https://templatemo.com/tm-570-chain-app-dev
       <?php  include ("footer.html");
     ?>
   </body>
+
+  <script src="sa_listeParcelle.js"></script>
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/owl-carousel.js"></script>

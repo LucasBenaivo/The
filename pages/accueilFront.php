@@ -113,9 +113,18 @@ https://templatemo.com/tm-570-chain-app-dev
             <button class="bouton-vert"><a href="saisieDepenseFront.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Saisie de depense</a></button>
         </div>
         
+    
+        <br>
+        <div class="container1">
+            <button class="bouton-vert"><a href="listePaiement.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Liste de Paiement</a></button>
+        </div>
         <br>
         <div class="container1">
             <button class="bouton-vert"><a href="resultat.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Resultat Partie 2</a></button>
+        </div>
+        <br>
+        <div class="container1">
+            <button class="bouton-vert"><a href="prevision.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Prevision</a></button>
         </div>
         <!-- <br>
         <div class="container2">

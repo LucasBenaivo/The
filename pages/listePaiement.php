@@ -115,94 +115,61 @@ https://templatemo.com/tm-570-chain-app-dev
     <?php
         include ("header.html"); ?>
         <br>
-  <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Resultat</h5>
+  <h5 class="card-title fw-semibold mb-4" style="text-align:center;">liste de Paiement</h5>
         <div class="card">
           <div class="card-body">
-          <form action ="" method ="POST">
+          <form id="dateForm">
 
             
           <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Date debut</label>
-              <input type="date" class="form-control" id="datedeb" name ="dateDebut">
+              <input type="date" class="form-control" name ="dateDebut" id="datedeb">
             </div>
 
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Date Fin</label>
-              <input type="date" class="form-control" id="datefin" name ="dateDebut">
+              <input type="date" class="form-control" name ="dateDebut" id="datefin">
             </div>
-            
+            <button type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
             </form>
-<button onclick="postData() " type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
+
 
 
         </div>
        </div>  
-            
-<section class="ftco-section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-5">
-          <h2 class="heading-section">Table différence</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-wrap">
-            <table class="table table-responsive-xl" name = "table"  id="firstTable">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <!-- <th>&nbsp;</th>  
-                  <th>&nbsp;</th>  -->
-                </tr>
-              </thead>
-              <tbody id="table">
-                <tr class="alert" role="alert">
-                  <!-- <td><%= m.getPrixNormal() %></td>
-                <td><%= m.getPrixIntermediaire() %></td> -->
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
        <section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Table resultats</h2>
+					<h2 class="heading-section">Table</h2>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
-						<table class="table table-responsive-xl" name = "table" id="secondTable">
+						<table class="table table-responsive-xl" name = "table" >
 						  <thead>
 						    <tr>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
+                  <th>Nom</th>
+                  <th>Genre</th>
+						    	<th>Date</th>
+                  
+                  <th>Montant</th>
+                  <th>Bonus</th>
+                  <th>Minus</th>
+                  
+                  <th>Poids</th>
+                  <th>Poids min</th>
 						      <!-- <th>&nbsp;</th>	
 						      <th>&nbsp;</th>	 -->
 						    </tr>
 						  </thead>
 						  <tbody id="table">
 						    <tr class="alert" role="alert">
-						      <!-- <td><%= m.getPrixNormal() %></td>
-							  <td><%= m.getPrixIntermediaire() %></td> -->
+                                
+						    	 
 						    </tr>
 						  </tbody>
 						</table>
@@ -211,6 +178,7 @@ https://templatemo.com/tm-570-chain-app-dev
 			</div>
 		</div>
 	</section>
+
        <div class="container1">
             <button class="bouton-vert"><a href="accueilFront.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Retour</a></button>
         </div>
@@ -251,65 +219,77 @@ https://templatemo.com/tm-570-chain-app-dev
   <!-- Template Main JS File -->
   <script src="../assets/header/assets/js/main.js"></script>
 
-  <script>
-// Function to send AJAX POST request
-function postData() {
-  var dateDeb=document.getElementById('datedeb').value;
-  var dateFin=document.getElementById('datefin').value;
+<script>
+document.getElementById("dateForm").addEventListener("submit", function(event){
+    // Prevent default form submission
+    event.preventDefault();
+    
+    var datedeb = document.getElementById("datedeb").value;
+    var datefin = document.getElementById("datefin").value;
+    
+    // Create a new AJAX request
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../TheFinal/result_array.php", true);
+    
+    // Configure the request
+    xhr.open("POST", "../TheFinal/details_paiement.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onload = function() {
-        if (this.status >=  200 && this.status <  400) {
-            // Success! Parse the JSON response and populate the tables
-            var data = JSON.parse(this.response);
+    
+    // Handle the response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState ===  4 && xhr.status ===  200) {
+            var data = JSON.parse(xhr.responseText);
             console.log(data);
-            populateTables(data);
-        } else {
-            console.error("Server responded with status " + this.status);
+            var tbody = document.getElementById("table");
+            tbody.innerHTML = ''; // Clear existing rows
+            
+            // Loop through the data and add rows to the table
+            for (var i =  0; i < data.length; i++) {
+                var row = document.createElement("tr");
+                
+                // Assuming data contains objects with properties 'column1' and 'column2'
+                var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
+                var cell3 = document.createElement("td");
+                var cell4 = document.createElement("td");
+                var cell5 = document.createElement("td");
+                var cell6 = document.createElement("td");
+                var cell7 = document.createElement("td");
+                var cell8 = document.createElement("td");
+                
+                cell1.textContent = data[i].nom;
+                cell2.textContent = data[i].genre;
+                cell3.textContent = data[i].dtn;
+                cell4.textContent = data[i].montant;
+                cell5.textContent = data[i].bonus;
+                cell6.textContent = data[i].minus;
+                cell7.textContent = data[i].poids;
+                cell8.textContent = data[i].poidsMin;
+
+                //nom": "Cueilleur1",
+        //"genre": "undefined",
+        //"dtn": "1993-02-11",
+        //"montant": "100000.00",
+        //"bonus": "0",
+        //"minus": "5000.00000000",
+        //"poids": 1,
+        //"poidsMin": "100.00"
+                
+                row.appendChild(cell1);
+                row.appendChild(cell2);
+                row.appendChild(cell3);
+                row.appendChild(cell4);
+                row.appendChild(cell5);
+                row.appendChild(cell6);
+                row.appendChild(cell7);
+                row.appendChild(cell8);
+                
+                tbody.appendChild(row);
+            }
         }
     };
-
-    xhr.onerror = function() {
-        console.error("An error occurred during the transaction");
-    };
-
-    // Send the POST request with URL-encoded form data
-    var params = "datedeb=" + encodeURIComponent(dateDeb) + "&datefin=" + encodeURIComponent(dateFin);
-    xhr.send(params);
-}
-
-// Function to populate the tables with data
-function populateTables(data) {
-    var firstTableBody = document.getElementById("firstTable").getElementsByTagName("tbody")[0];
-    var secondTableBody = document.getElementById("secondTable").getElementsByTagName("tbody")[0];
-
-    // Clear existing rows
-    firstTableBody.innerHTML = '';
-    secondTableBody.innerHTML = '';
-
-    // Populate the first table with the first part of the data
-    Object.keys(data).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + data[key];
-        row.appendChild(cell);
-        firstTableBody.appendChild(row);
-    });
-
-    // Populate the second table with the rest of the data
-    // Assuming there's another set of data that needs to be displayed
-    var secondDataSet = {}; // Replace with actual logic to get the second dataset
-    Object.keys(secondDataSet).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + secondDataSet[key];
-        row.appendChild(cell);
-        secondTableBody.appendChild(row);
-    });
-}
-
-
-</script>
+    
+    // Send the request with parameters
+    xhr.send("datedeb=" + encodeURIComponent(datedeb) + "&datefin=" + encodeURIComponent(datefin));
+});
+</script>  
   </html>

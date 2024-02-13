@@ -108,6 +108,30 @@ https://templatemo.com/tm-570-chain-app-dev
         justify-content: center;
         align-items: center; 
     }
+
+
+    .select-personnalise {
+  padding: 12px 20px; /* Ajoute de l'espace à l'intérieur */
+  font-size: 16px; /* Taille de la police */
+  width: 100%; /* Largeur du select */
+  border-radius: 8px; /* Ajoute un peu de bord arrondi */
+  border: 2px solid #4CAF50; /* Ajoute une bordure */
+  background-color: #fff; /* Couleur de fond */
+  appearance: none; /* Masque l'apparence par défaut du select */
+  -webkit-appearance: none; /* Pour les navigateurs basés sur WebKit */
+  -moz-appearance: none; /* Pour les navigateurs basés sur Gecko */
+}
+
+/* Style pour les options du select */
+.select-personnalise option {
+  padding: 10px; /* Ajoute de l'espace à l'intérieur des options */
+  font-size: 16px; /* Taille de la police */
+}
+
+/* Lorsque le select est survolé */
+.select-personnalise:hover {
+  border-color: #45a049; /* Changement de couleur de la bordure au survol */
+}
   </style>
   <body>
     <?php
@@ -115,10 +139,18 @@ https://templatemo.com/tm-570-chain-app-dev
   <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Configuration categorie depense</h5>
         <div class="card">
           <div class="card-body">
-          <form action ="" method ="POST">
+          <form action ="../TheFinal/configCueilleur.php" method ="POST">
+            
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Cueilleur</label>
+              <select name="cueilleur" class="select-personnalise" id="selectCueil">
+                
+                </select>
+            </div>
+
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Nouveau Poids Minimum</label>
-              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="salaire">
+              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="poid_min">
             </div>
             
             <div class="mb-3">
@@ -139,42 +171,7 @@ https://templatemo.com/tm-570-chain-app-dev
         </div>
        </div>  
        
-       <section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Table</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-						<table class="table table-responsive-xl" name = "table" id="table">
-						  <thead>
-						    <tr>
-						    	<th>Nom</th>
-						      <th>Co&ucirct</th>
-						      <th>Date</th>
-						      <!-- <th>&nbsp;</th>	
-						      <th>&nbsp;</th>	 -->
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr class="alert" role="alert">
-						      <td>ok</td>
-						      <td>ok</td>
-						      <td>ok</td>
-						      <!-- <td>ok</td> -->
-						      <!-- <td><%= m.getPrixNormal() %></td>
-							  <td><%= m.getPrixIntermediaire() %></td> -->
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+       
   <div class="container1">
             <button class="bouton-vert"><a href="accueilBack.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Retour</a></button>
         </div>
@@ -213,4 +210,5 @@ https://templatemo.com/tm-570-chain-app-dev
 
   <!-- Template Main JS File -->
   <script src="../assets/header/assets/js/main.js"></script>
+  <script src="gestion_cueilleur.js"></script>
   </html>

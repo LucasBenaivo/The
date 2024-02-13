@@ -1,4 +1,3 @@
-
 function chargerProduits() {
        var xhr = new XMLHttpRequest();
         xhr.open('GET', 'parcelles.php', true);
@@ -22,7 +21,7 @@ function chargerProduits() {
         produits.forEach(function(produit) {
             var option = document.createElement('option');
             option.value = produit.id;
-            option.textContent = produit.nom;
+            option.textContent = produit.numero;
             container.appendChild(option);
         });
     

@@ -3,11 +3,13 @@
 
  $tableName = "configCueilleur";
  $data = array(
-    "id_cueilleur" => 1,
-    "poidsMin" => 100.0,
-    "bonus" => 10,
-    "minus" => 5
+    "id_cueilleur" => $_POST['cueilleur'] ,
+    "poidsMin" => $_POST['poid_min'],
+    "bonus" => $_POST['bonus'],
+    "minus" => $_POST['mallus']
  );
  
  createRecord($tableName, $data);
+
+ header('Location:../pages/newPoids.php')
 ?>

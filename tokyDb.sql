@@ -124,12 +124,42 @@ create table cueilleurSalaire(
     montant DECIMAL(10,2)
 );
 
+create table Vente(
+    dateVente date,
+    id_the int, foreign key(id_the) references the(id),
+    montant DECIMAL(10,2)
+);
 
+
+insert into Vente values('2020-10-11',1,100000);
+insert into Vente values('2020-12-11',1,200000);
+
+insert into depense(date,montant) values('2020-12-11',200000);
+insert into depense(date,montant)  values('2021-12-11',200000);
 
 insert into cueilleurSalaire values(1,100000);
 
+select sum(poids) as total_cueillette
+from cueillette
+WHERE date between '2022-11-10' and '2023-11-10';
+
+select sum(montant) as recette 
+from Vente
+WHERE dateVente between '2018-11-10' and '2023-11-10';
+
+select sum(montant) as recette 
+from depense
+WHERE dateVente between '2018-11-10' and '2023-11-10';
+
+select sum(montant)-sum(montant) as recette 
+from depense d 
+join Vente v 
+on 
+WHERE dateVente between '2018-11-10' and '2023-11-10';
+
+
 create or replace view v_details_paiement as
-select nom,genre,dtn,montant,
+select nom,genre,montant,date,
 CASE WHEN poids > poidsMin THEN (montant * bonus) / 100 
 ELSE 0
 END as bonus,
@@ -146,7 +176,10 @@ on cs.id_cueilleur = co.id_cueilleur
 join cueillette cu 
 on cu.id_cueilleur = co.id_cueilleur;
 
+select * from v_details_paiement
+WHERE date between '2022-11-10' and '2023-10-12';
 
+select sum()
 
 
 -- 322

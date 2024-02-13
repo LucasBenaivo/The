@@ -3,9 +3,10 @@
 
  $tableName = "PrixVente";
  $data = array(
-    "id_the" => 1,
-    "prixVente" => 500.25
+    "id_the" => $_POST['the'],
+    "prixVente" => $_POST['prixThe']
  );
  
  createRecord($tableName, $data);
+  header('Location:../pages/insertionPxVente.php')
 ?>

@@ -130,6 +130,9 @@ https://templatemo.com/tm-570-chain-app-dev
         <br>
         <div class="container1">
             <button class="bouton-vert"><a href="configMois.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Configuration Mois generation th&eacute</a></button>
+        </div><br>
+        <div class="container1">
+            <button class="bouton-vert"><a href="insertionPxVente.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Insertion Prix de vente</a></button>
         </div>
         <br>
         <div class="container1">

@@ -82,7 +82,6 @@ https://templatemo.com/tm-570-chain-app-dev
   border-color: #45a049; /* Changement de couleur de la bordure au survol */
 }
 
-
 .bouton-vert {
             background-color: #5cb874; /* Couleur de fond verte */
             border: none; /* Supprimer les bordures */
@@ -113,108 +112,70 @@ https://templatemo.com/tm-570-chain-app-dev
   </style>
   <body>
     <?php
-        include ("header.html"); ?>
-        <br>
-  <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Resultat</h5>
+        include ("header.html"); ?><br><br>
+  <h5 class="card-title fw-semibold mb-4" style="text-align:center;">PREVISION</h5>
         <div class="card">
           <div class="card-body">
           <form action ="" method ="POST">
-
-            
-          <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Date debut</label>
-              <input type="date" class="form-control" id="datedeb" name ="dateDebut">
-            </div>
-
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Date Fin</label>
-              <input type="date" class="form-control" id="datefin" name ="dateDebut">
+              <label for="exampleInputEmail1" class="form-label">Date</label>
+              <input type="date" class="form-control" id="categorieNom" aria-describedby="emailHelp" name="nom">
             </div>
             
             </form>
-<button onclick="postData() " type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
+            <button onclick="submitCategoryForm()" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
+
 
 
         </div>
        </div>  
-            
-<section class="ftco-section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-5">
-          <h2 class="heading-section">Table différence</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-wrap">
-            <table class="table table-responsive-xl" name = "table"  id="firstTable">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <!-- <th>&nbsp;</th>  
-                  <th>&nbsp;</th>  -->
-                </tr>
-              </thead>
-              <tbody id="table">
-                <tr class="alert" role="alert">
-                  <!-- <td><%= m.getPrixNormal() %></td>
-                <td><%= m.getPrixIntermediaire() %></td> -->
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-       <section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Table resultats</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-						<table class="table table-responsive-xl" name = "table" id="secondTable">
-						  <thead>
-						    <tr>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						      <!-- <th>&nbsp;</th>	
-						      <th>&nbsp;</th>	 -->
-						    </tr>
-						  </thead>
-						  <tbody id="table">
-						    <tr class="alert" role="alert">
-						      <!-- <td><%= m.getPrixNormal() %></td>
-							  <td><%= m.getPrixIntermediaire() %></td> -->
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-       <div class="container1">
-            <button class="bouton-vert"><a href="accueilFront.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Retour</a></button>
+       <div class="card">
+            <div class="card-body">
+              <p>  Poids Total Th&eacute restant : </p>
+              <p>  Montant : </p>
+            </div></div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+<!--               -->
+                <div class="col-md-4">
+                  <h4 class="card-title fw-semibold mb-4">THE SAHAMBAVY</h4>
+                  <div class="card">
+                    <img src="../assets/form/images/products/b.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">15.2ha</h5>
+                      <h5 class="card-title">Nombre de Pied :</h5>
+                      <h5 class="card-title">Poids Th&eacute : </h5>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                      <a href="#" class="btn btn-primary" style="background-color:#5cb874;border-color:#5cb874">Go somewhere</a> -->
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <h4 class="card-title fw-semibold mb-4">THE SAHAMBAVY</h4>
+                  <div class="card">
+                    <img src="../assets/form/images/products/c.jpg" class="card-img-top" alt="..." style="height:20%">
+                    <div class="card-body">
+                      <h5 class="card-title">15.2ha</h5>
+                      <h5 class="card-title">Nombre de Pied :</h5>
+                      <h5 class="card-title">Poids Th&eacute : </h5>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                      <a href="#" class="btn btn-primary" style="background-color:#5cb874;border-color:#5cb874">Go somewhere</a> -->
+                    </div>
+                  </div>
+                </div>
+<!--               --></div></div></div>
+
+  <div class="container1">
+            <button class="bouton-vert"><a href="accueilBack.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Retour</a></button>
         </div>
-       
       <?php  include ("footer.html");
     ?>
   </body>
@@ -251,65 +212,9 @@ https://templatemo.com/tm-570-chain-app-dev
   <!-- Template Main JS File -->
   <script src="../assets/header/assets/js/main.js"></script>
 
-  <script>
-// Function to send AJAX POST request
-function postData() {
-  var dateDeb=document.getElementById('datedeb').value;
-  var dateFin=document.getElementById('datefin').value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../TheFinal/result_array.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onload = function() {
-        if (this.status >=  200 && this.status <  400) {
-            // Success! Parse the JSON response and populate the tables
-            var data = JSON.parse(this.response);
-            console.log(data);
-            populateTables(data);
-        } else {
-            console.error("Server responded with status " + this.status);
-        }
-    };
-
-    xhr.onerror = function() {
-        console.error("An error occurred during the transaction");
-    };
-
-    // Send the POST request with URL-encoded form data
-    var params = "datedeb=" + encodeURIComponent(dateDeb) + "&datefin=" + encodeURIComponent(dateFin);
-    xhr.send(params);
-}
-
-// Function to populate the tables with data
-function populateTables(data) {
-    var firstTableBody = document.getElementById("firstTable").getElementsByTagName("tbody")[0];
-    var secondTableBody = document.getElementById("secondTable").getElementsByTagName("tbody")[0];
-
-    // Clear existing rows
-    firstTableBody.innerHTML = '';
-    secondTableBody.innerHTML = '';
-
-    // Populate the first table with the first part of the data
-    Object.keys(data).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + data[key];
-        row.appendChild(cell);
-        firstTableBody.appendChild(row);
-    });
-
-    // Populate the second table with the rest of the data
-    // Assuming there's another set of data that needs to be displayed
-    var secondDataSet = {}; // Replace with actual logic to get the second dataset
-    Object.keys(secondDataSet).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + secondDataSet[key];
-        row.appendChild(cell);
-        secondTableBody.appendChild(row);
-    });
-}
-
-
-</script>
+  <script src="categorieDepense.js"></script>
+  <script>fetchDropdownDataCat();</script>
+  
   </html>
+
+  
