@@ -151,7 +151,7 @@ input[type="submit"] {
   <h5 class="card-title fw-semibold mb-4" style="text-align:center;">Configuration mois</h5>
         <div class="card">
           <div class="card-body">
-          <form>
+          <form id="moisPousseForm">
 
           <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Liste de th&eacute Plant&eacute</label>
@@ -163,38 +163,38 @@ input[type="submit"] {
             <div class="mb-3">
     <div class="checkbox-container">
         <div class="first-half">
-            <input type="checkbox" id="january" name="month" value="january">
+            <input type="checkbox" id="january" name='moisPousse[]' value="1">
             <label for="january">January</label>
-            <input type="checkbox" id="february" name="month" value="february">
+            <input type="checkbox" id="february" name='moisPousse[]' value="2">
             <label for="february">February</label>
-            <input type="checkbox" id="march" name="month" value="march">
+            <input type="checkbox" id="march" name='moisPousse[]' value="3">
             <label for="march">March</label>
-            <input type="checkbox" id="april" name="month" value="april">
+            <input type="checkbox" id="april" name='moisPousse[]' value="4">
             <label for="april">April</label>
-            <input type="checkbox" id="may" name="month" value="may">
+            <input type="checkbox" id="may" name='moisPousse[]' value="5">
             <label for="may">May</label>
-            <input type="checkbox" id="june" name="month" value="june">
+            <input type="checkbox" id="june" name='moisPousse[]' value="6">
             <label for="june">June</label>
         </div>
         <br>
         <br>
         <div class="second-half">
-            <input type="checkbox" id="july" name="month" value="july">
+            <input type="checkbox" id="july" name='moisPousse[]' value="7">
             <label for="july">July</label>
-            <input type="checkbox" id="august" name="month" value="august">
+            <input type="checkbox" id="august" name='moisPousse[]' value="8">
             <label for="august">August</label>
-            <input type="checkbox" id="september" name="month" value="september">
+            <input type="checkbox" id="september" name='moisPousse[]' value="9">
             <label for="september">September</label>
-            <input type="checkbox" id="october" name="month" value="october">
+            <input type="checkbox" id="october" name='moisPousse[]' value="10">
             <label for="october">October</label>
-            <input type="checkbox" id="november" name="month" value="november">
+            <input type="checkbox" id="november" name='moisPousse[]' value="11">
             <label for="november">November</label>
-            <input type="checkbox" id="december" name="month" value="december">
+            <input type="checkbox" id="december" name='moisPousse[]' value="12">
             <label for="december">December</label>
         </div>
     </div>
     
-    <button id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Sauvgarder</button>
+    <button onclick="submitForm()" id="submitt" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Sauvgarder</button>
             </div>
             </form>
         </div>
@@ -238,8 +238,45 @@ input[type="submit"] {
   <!-- Template Main JS File -->
   <script src="../assets/header/assets/js/main.js"></script>
 
+   <script>
+     function submitForm() {
+    // Collecter les valeurs des cases à cocher sélectionnées
+    var moisPousseChecked = [];
+    document.querySelectorAll('input[name="moisPousse[]"]:checked').forEach(function(element) {
+        moisPousseChecked.push(element.value);
+    });
+
+    // Préparer les données à envoyer
+    var dataToSend = 'moisPousse=' + encodeURIComponent(moisPousseChecked.join(','));
+
+    // Créer une nouvelle instance de XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configurer la requête AJAX
+    xhr.open('POST', '../TheFinal/mois.php', true);
+
+    // Définir le type de contenu de la requête
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    // Gérer la réponse du serveur
+    xhr.onload = function() {
+        if (xhr.status >=  200 && xhr.status <  300) {
+            // La requête a réussi
+            console.log('Succès !', xhr.responseText);
+        } else {
+            // La requête a échoué
+            console.log('La requête a échoué !');
+        }
+    };
+
+    // Envoyer la requête
+    xhr.send(dataToSend);
+}
+   </script>
+
   
   </html>
+
 
 
 

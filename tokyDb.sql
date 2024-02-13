@@ -1,3 +1,4 @@
+
 --//mysql -u username -h 172.20.0.167 --port 3306 -p 
 --ETU002566
 
@@ -20,6 +21,11 @@ CREATE TABLE the (
     rendement DECIMAL(10,  4) NOT NULL
 );
 
+insert into the(nom,occupation_par_m2,rendement)
+values('The1',1,10);
+
+insert into the(nom,occupation_par_m2,rendement)
+values('The2',54,101);
 
 CREATE TABLE cueilleur (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,20 +33,22 @@ CREATE TABLE cueilleur (
   genre VARCHAR(10),
   dtn DATE
 );
--- 322
+
+
+insert into cueilleur(nom,genre,dtn)
+VALUES('C2','G','1999-10-11');
 
 CREATE TABLE categorie_depense (
     id INT AUTO_INCREMENT PRIMARY KEY,
     categorie VARCHAR(255) NOT NULL
 );
--- 322depense;
+
 
 
 CREATE TABLE config_salaire (
     valeur double
 );
 
--- 322aire;
 INSERT INTO config_salaire (valeur) VALUES (0);
 
 create table sa_parcelles(
@@ -49,10 +57,12 @@ create table sa_parcelles(
      surface double,
      id_the int, foreign key(id_the) references the(id)
 );
+
 INSERT INTO sa_parcelles (numero, id_the,surface) VALUES 
 ('Parcelle1', 1,15.12);
+INSERT INTO sa_parcelles (numero, id_the,surface) VALUES 
+('Parcelle1', 2,150.12);
 
--- 322es;
 
 CREATE TABLE cueillette (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -60,9 +70,21 @@ CREATE TABLE cueillette (
     id_cueilleur INT,
     id_parcelle INT,
     poids DOUBLE,
-    FOREIGN KEY (id_cueilleur) REFERENCES cueilleur(id), -- Assurez-vous que la table cueilleurs existe avec une colonne 'id' comme clé primaire
-    FOREIGN KEY (id_parcelle) REFERENCES sa_parcelles(id) -- Assurez-vous que la table parcelles existe avec une colonne 'id' comme clé primaire
+    FOREIGN KEY (id_cueilleur) REFERENCES cueilleur(id),
+    FOREIGN KEY (id_parcelle) REFERENCES sa_parcelles(id)
 ) ;
+
+
+
+insert INTO cueillette
+(date,id_cueilleur,id_parcelle,poids)
+values('2023-10-11',1,3,10);
+
+insert INTO cueillette
+(date,id_cueilleur,id_parcelle,poids)
+values('2023-12-11',1,4,10);
+
+
 -- 322;
 
 CREATE TABLE depense (
@@ -79,6 +101,53 @@ create table sa_client(
     mdp varchar(100)
 );
 insert into sa_client (mail,mdp) values('utilisateur@gmail.com','utilisateur');
+
+
+create table MoisPoussee(
+    idMois int
+);
+
+create table configCueilleur(
+    id_cueilleur int,foreign key(id_cueilleur) references cueilleur(id),
+    poidsMin DECIMAL(5,2),
+    bonus DECIMAL(5,2),
+    minus DECIMAL(5,2)
+);
+
+create table PrixVente(
+    id_the int, foreign key(id_the) references the(id),
+    prixVente DECIMAL(10,2)
+);
+
+create table cueilleurSalaire(
+   id_cueilleur int, foreign key(id_cueilleur) references cueilleur(id),
+    montant DECIMAL(10,2)
+);
+
+
+
+insert into cueilleurSalaire values(1,100000);
+
+create or replace view v_details_paiement as
+select nom,genre,dtn,montant,
+CASE WHEN poids > poidsMin THEN (montant * bonus) / 100 
+ELSE 0
+END as bonus,
+  CASE 
+        WHEN poids <= poidsMin THEN (montant * minus) / 100 
+        ELSE 0 
+    END AS minus, 
+    poids,poidsMin
+from cueilleur c 
+join configCueilleur co 
+on c.id= co.id_cueilleur
+join cueilleurSalaire cs
+on cs.id_cueilleur = co.id_cueilleur
+join cueillette cu 
+on cu.id_cueilleur = co.id_cueilleur;
+
+
+
 
 -- 322
 create or replace view details_parcelle as 
