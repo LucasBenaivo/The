@@ -1,0 +1,356 @@
+1-Backoffice:
+page
+a-index.html
+
+	affichage 
+Choix Backoffice ou FrontOffice
+(2 boutons)
+boutonBackOff redirige vers login_backoffice.html
+boutonFrontOff redirige vers login_frontoffice.html
+
+
+	fonction
+
+	integration
+
+	base
+
+page
+b-login_backoffice.html
+
+	affichage
+input text mail
+input text mdp
+bouton se connecter 
+
+
+	fonction
+
+	integration
+
+	base
+
+b-traitement_login_backoffice.php 
+
+	fonction
+
+	integration
+
+	base
+table tea_admin(int id_admin, nom, mail, mdp)
+
+page
+c-gestion_thé.html
+
+	affichage
+input nom
+input occupation (type number)
+input rendement par pied (type number)
+table pour afficher les thés(colonne:nom,occupation,rendement)
+
+
+	fonction
+
+	integration
+
+	base
+
+c-traitement_gestion_thé.php
+
+	fonction
+
+	integration
+
+	base
+table the(id, nom, occupation par m2 (decimal), rendement (decimal))
+
+c-get_thé.php
+
+	fonction
+
+	integration
+
+	base
+table the ci_dessus
+
+ca-update_thé.html
+
+	affichage
+select thé 
+input occupation (type number)
+input rendement par pied (type number)
+bouton update
+
+
+	fonction
+
+	integration
+
+	base
+
+cab-update_thé.php
+
+	fonction
+
+	integration
+
+	base
+table the ci_dessus
+
+d-gestion_parcelle.html
+
+	affichage
+input numeroparcelle (type number)
+input surface (type number)
+zone de list (select) varieté de thé planté
+bouton valider
+
+
+id_parcelle_to_show (select) Choix de la parcelle à afficher 
+table pour afficher les parcelles(colonne:numero,surface,thé planté)
+
+	fonction
+
+	integration
+
+	base
+
+c-traiement_gestion_parcelle.php
+
+	fonction
+
+	integration
+
+	base
+table parcelle(id, numero, id_the)
+
+c-get_parcelle.php
+
+	fonction
+
+	integration
+
+	base
+table parcelle(id, numero, id_the)
+
+da-update_parcelle.html
+
+	affichage
+select choixparcelle
+input surface (type number)
+zone de list (select) varieté de thé planté
+bouton update
+
+
+	fonction
+
+	integration
+
+	base
+
+d-update_parcelle.php
+
+	fonction
+
+	integration
+
+	base
+table parcelle(id, numero, id_the)
+
+e-gestion_cueillueur.html
+
+	affichage
+input nom 
+input genre (type radiobox) En dur, soit Homme soit Femme
+input date Dtn
+bouton valider
+
+
+id_cueilleur_to_show (select) Choix du cueilleur à afficher 
+table pour afficher les cueilleurs(colonne:nom,genre,dtn)
+
+	fonction
+
+	integration
+
+	base
+d-traitement_gestion_cueillueur.php
+
+	fonction
+
+	integration
+
+	base
+table cueuilleur(id, nom, genre, dtn)
+
+d-get_cueillueur.php
+
+	fonction
+
+	integration
+
+	base
+table cueuilleur(id, nom, genre, dtn)
+
+f-gestion_categorie_depense.html
+
+	affichage
+input nom (type text)
+bouton valider
+
+
+
+id_categorie_to_show (select) Choix de categorie à afficher 
+table pour afficher les categorie(colonne:nom,cout)
+
+	fonction
+
+	integration
+
+	base
+
+-gestion_categorie_depense.php
+
+	fonction
+
+	integration
+
+	base
+table categorie_depense(id, categorie)
+
+-get_categorie_depense.php
+
+	fonction
+
+	integration
+
+	base
+table categorie_depense(id, categorie)
+
+g-config_categorie_depense.html
+
+	affichage
+input salaire
+bouton valider
+ 
+table pour afficher la config(colonne:nom,cout,date)
+
+	fonction
+
+	integration
+
+	base
+Date
+
+-config_categorie_depense.php
+
+	fonction
+
+	integration
+
+	base
+table config_salaire(valeur)
+
+
+
+1-Frontoffice:
+page
+a-login_frontoffice.html
+
+	affichage
+input text mail
+input text mdp
+bouton se connecter 
+
+
+	fonction
+
+	integration
+
+	base
+
+-traitement_login_frontoffice.php
+
+	fonction
+
+	integration
+
+	base
+table utilisateur(id, mail, mdp)
+
+page
+b-saisie_cueillette.html
+
+	affichage
+input date 
+select Choixcueillieur
+select ChoixParcelle
+input nombre Poids cueillis
+bouton ajouter 
+
+
+	fonction
+
+	integration
+
+-traitement_saisie_cueillette.php
+
+	fonction
+
+	integration
+
+	base
+table cueillette(id, date, id_cueilleur, id_parcelle, poids double)
+
+c-saisie_depenses.html
+
+	affichage
+input date 
+select ChoixCategorieDepenses
+input nombre montant
+bouton ajouter 
+
+
+	fonction
+
+	integration
+
+	base
+
+-traitement_saisie_depense.php
+
+	fonction
+
+	integration
+
+	base
+table depense(id, date, id_categorie_dep, montant)
+
+d-resultats.html
+
+	affichage
+bouton afficher
+
+label Pour afficher le poids total cueillette
+
+Tableau StatParcelle (colonne:nomParcelle,poidsCueillis, poidsRestant)
+
+Tableau cout de revient/kg (colonne: nomThé,cout de revient)
+
+
+	fonction
+
+	integration
+
+	base
+
+resultats.php
+
+	fonction
+
+	integration
+
+	base
+vue resultats
+
+poids total cueillette*salaire+dep)/poids total cueillette
