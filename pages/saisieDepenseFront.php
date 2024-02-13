@@ -122,7 +122,7 @@ https://templatemo.com/tm-570-chain-app-dev
             
           <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Date</label>
-              <input type="date" class="form-control" id="exampleInputPassword1" name ="date">
+              <input type="date" class="form-control" name ="date" id="date">
             </div>
 
             
@@ -136,10 +136,11 @@ https://templatemo.com/tm-570-chain-app-dev
             <div class="mb-3">
                 
               <label for="exampleInputEmail1" class="form-label">Nombre montant</label>
-              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nbrMontant">
+              <input type="number" class="form-control" id="montant" aria-describedby="emailHelp" name="nbrMontant">
             </div>
-            <button type="submit" class="btn btn-primary" style = "background-color: #5cb874">Ajouter</button>
+            
             </form>
+            <button onclick="submitForm()" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Ajouter</button>
 
 
 

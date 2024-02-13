@@ -34,3 +34,39 @@ function fetchDropdownDataCat() {
     // Envoyer la requête
     xhr.send();
 }
+
+// Function to handle the AJAX call
+function submitForm() {
+    // Assuming you have input elements with ids 'date', 'id_categorie_dep', 'montant'
+    var date = document.getElementById('date').value;
+    var id_categorie_dep = document.getElementById('selectCat').value;
+    var montant = document.getElementById('montant').value;
+
+    // Create an instance of XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Prepare the data to be sent
+    var data = 'date=' + encodeURIComponent(date) +
+               '&id_categorie_dep=' + encodeURIComponent(id_categorie_dep) +
+               '&montant=' + encodeURIComponent(montant);
+
+    // Open a POST connection
+    xhr.open('POST', '../toky_part1/insertDepense.php', true);
+
+    // Set the request header to tell the server what kind of data we're sending
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    // Handle the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState ===  4 && xhr.status ===  200) {
+            // The request was successful, process the response here
+            alert(xhr.responseText);
+        }
+    };
+
+    // Send the data
+    xhr.send(data);
+}
+
+// Example usage: call submitForm when a button is clicked
+//document.getElementById('boutonSubmit').addEventListener('click', submitForm);
