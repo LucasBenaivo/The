@@ -184,5 +184,6 @@ https://templatemo.com/tm-570-chain-app-dev
 
   <!-- Template Main JS File -->
   <script src="../assets/header/assets/js/main.js"></script>
-  <script src="Saisie_depense.js"></script>
+  <script src="saisie_depense.js"></script>
+  <script>fetchDropdownDataCat();</script>
   </html>
