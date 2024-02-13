@@ -1,0 +1,124 @@
+Backoffice
+1 - affichage 
+ - affichage pour choisir la saison de pousse 
+
+ - metier
+
+ - integration
+
+ - base
+
+2 - configurer_poussee.php:OK
+- affichage 
+
+ - metier
+  - fonction pour inserer dans la base():OK
+
+ - integration
+ -recuperation des donnees du formulaire et insertion
+
+
+ - base
+  rendement(valeur, idMois)
+
+3 -  configPoidsMin.html :OK
+    affichage :
+    - zone de liste cueilleur
+    - input pour le nouveau poids minimum
+    - input pour le nouveau bonus
+    - input pour le nouveau mallus
+
+    metier :
+
+    integration :
+
+    base
+
+4 -  configPoidsMin.php :OK
+    affichage :
+
+    metier :
+    - fonction insert anaty table rendement 
+
+    integration :
+    - appel de la fonction insert
+
+    base:
+    ConfigCueilleur(id,poisMin,bonus,minus)
+
+5 - PrixVente.html
+    affichage :
+    - zone de liste the
+    - input pour le prix par varieté de the
+
+    metier:
+
+    integration :
+
+    base
+
+6 - PrixVente.php
+    affichage :
+   
+
+    metier:
+    - fonction manao insert anaty base:OK
+    - fonction manao update:OK
+
+    integration :
+    - recuperation des donnees
+    - appel de la fonction d'insertion
+
+    base
+    table prixThe(idThe,nouveauPrix)
+
+FrontOffice
+1 - ListePaiement.html
+    - input date debut
+    - input date fin 
+    - tableau (date,nomCueilleur,poids,%bonus,%mallus,montantPaiement)
+
+    metier :
+
+    integration :
+
+    base :
+
+2 - ListePaiement.php
+
+    metier :
+    - fonction mselect anaty vue
+
+    integration :
+    - ajax ou php pour recuperer et afficher les donnees
+
+    base :
+    manao vue
+
+3- Page de resultats :
+1 - resultats.html
+    - input date debut
+    - input date fin 
+    - tableau (poidsTotalCueilleur,poids restant sur les parcelles, montant des ventes,montant des depenses,benefice,cout de revient/kg)
+
+    metier :
+
+    integration :
+
+    base :
+
+2 - ListePaiement.php
+
+    metier :
+    - creation vue ou fonction 
+
+
+    integration :
+    - recuperation des donnees
+
+    base :
+    vue
+
+
+
+

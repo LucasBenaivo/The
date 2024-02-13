@@ -279,7 +279,7 @@ bouton se connecter
 table utilisateur(id, mail, mdp)
 
 page
-b-saisie_cueillette.html
+b-saisie_	.html
 
 	affichage
 input date 
