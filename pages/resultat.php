@@ -132,7 +132,7 @@ https://templatemo.com/tm-570-chain-app-dev
             </div>
             
             </form>
-<button onclick="postData() " type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
+<button onclick="postData() " id="showbut" type="submit" class="btn btn-primary" style = "background-color: #5cb874">Valider</button>
 
 
         </div>
@@ -148,21 +148,17 @@ https://templatemo.com/tm-570-chain-app-dev
       <div class="row">
         <div class="col-md-12">
           <div class="table-wrap">
-            <table class="table table-responsive-xl" name = "table"  id="firstTable">
+            <table class="table table-responsive-xl" name = "table"  >
               <thead>
                 <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>ID Parcelle</th>
+                  <th>Difference</th>
+                  
                   <!-- <th>&nbsp;</th>  
                   <th>&nbsp;</th>  -->
                 </tr>
               </thead>
-              <tbody id="table">
+              <tbody id="firstTable">
                 <tr class="alert" role="alert">
                   <!-- <td><%= m.getPrixNormal() %></td>
                 <td><%= m.getPrixIntermediaire() %></td> -->
@@ -185,21 +181,20 @@ https://templatemo.com/tm-570-chain-app-dev
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
-						<table class="table table-responsive-xl" name = "table" id="secondTable">
+						<table class="table table-responsive-xl" name = "table" >
 						  <thead>
 						    <tr>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
-						    	<th></th>
+						    	
+						    	<th>Recette</th>
+						    	<th>Total cueillette</th>
+						    	<th>Total dépense</th>
+						    	<th>Benefice</th>
+						    	<th>Prix de revient(par kg)</th>
 						      <!-- <th>&nbsp;</th>	
 						      <th>&nbsp;</th>	 -->
 						    </tr>
 						  </thead>
-						  <tbody id="table">
+						  <tbody id="secondTable">
 						    <tr class="alert" role="alert">
 						      <!-- <td><%= m.getPrixNormal() %></td>
 							  <td><%= m.getPrixIntermediaire() %></td> -->
@@ -252,64 +247,155 @@ https://templatemo.com/tm-570-chain-app-dev
   <script src="../assets/header/assets/js/main.js"></script>
 
   <script>
-// Function to send AJAX POST request
+
+
 function postData() {
-  var dateDeb=document.getElementById('datedeb').value;
-  var dateFin=document.getElementById('datefin').value;
+    
+    var datedeb = document.getElementById("datedeb").value;
+    var datefin = document.getElementById("datefin").value;
+    
+    // Create a new AJAX request
     var xhr = new XMLHttpRequest();
+    
+    // Configure the request
     xhr.open("POST", "../TheFinal/result_array.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    // Handle the response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState ===  4 && xhr.status ===  200) {
+            var data = JSON.parse(xhr.responseText);
+            console.log(data['difference'][0].id);
+            var tbody = document.getElementById("firstTable");
+            tbody.innerHTML = ''; // Clear existing rows
+            
+            // Loop through the data and add rows to the table
+            for (var i =  0; i < data['difference'].length; i++) {
+                var row = document.createElement("tr");
+                
+                // Assuming data contains objects with properties 'column1' and 'column2'
+                var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
+                //var cell3 = document.createElement("td");
+                //var cell4 = document.createElement("td");
+                //var cell5 = document.createElement("td");
+                //var cell6 = document.createElement("td");
+                //var cell7 = document.createElement("td");
+                //var cell8 = document.createElement("td");
+                
+                cell1.textContent = data['difference'][i].id;
+                cell2.textContent = data['difference'][i].difference;
+                //cell3.textContent = data[i].dtn;
+                //cell4.textContent = data[i].montant;
+                //cell5.textContent = data[i].bonus;
+                //cell6.textContent = data[i].minus;
+                //cell7.textContent = data[i].poids;
+                //cell8.textContent = data[i].poidsMin;
 
-    xhr.onload = function() {
-        if (this.status >=  200 && this.status <  400) {
-            // Success! Parse the JSON response and populate the tables
-            var data = JSON.parse(this.response);
-            console.log(data);
-            populateTables(data);
-        } else {
-            console.error("Server responded with status " + this.status);
+                //nom": "Cueilleur1",
+        //"genre": "undefined",
+        //"dtn": "1993-02-11",
+        //"montant": "100000.00",
+        //"bonus": "0",
+        //"minus": "5000.00000000",
+        //"poids": 1,
+        //"poidsMin": "100.00"
+                
+                row.appendChild(cell1);
+                row.appendChild(cell2);
+                //row.appendChild(cell3);
+                //row.appendChild(cell4);
+                //row.appendChild(cell5);
+                //row.appendChild(cell6);
+                //row.appendChild(cell7);
+                //row.appendChild(cell8);
+                
+                tbody.appendChild(row);
+            }
         }
     };
+    
+    // Send the request with parameters
+    xhr.send("datedeb=" + encodeURIComponent(datedeb) + "&datefin=" + encodeURIComponent(datefin));
+}
 
-    xhr.onerror = function() {
-        console.error("An error occurred during the transaction");
+
+
+
+function postData1() {
+    
+    var datedeb = document.getElementById("datedeb").value;
+    var datefin = document.getElementById("datefin").value;
+    
+    // Create a new AJAX request
+    var xhr = new XMLHttpRequest();
+    
+    // Configure the request
+    xhr.open("POST", "../TheFinal/result_array.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    // Handle the response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState ===  4 && xhr.status ===  200) {
+            var data = JSON.parse(xhr.responseText);
+            console.log(data);
+            var tbody = document.getElementById("secondTable");
+            tbody.innerHTML = ''; // Clear existing rows
+            
+            // Loop through the data and add rows to the table
+            for (var i =  0; i < 1; i++) {
+                var row = document.createElement("tr");
+                
+                // Assuming data contains objects with properties 'column1' and 'column2'
+                //var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
+                var cell3 = document.createElement("td");
+                var cell4 = document.createElement("td");
+                var cell5 = document.createElement("td");
+                var cell6 = document.createElement("td");
+                //var cell7 = document.createElement("td");
+                //var cell8 = document.createElement("td");
+                
+                //cell1.textContent = data['updateStatus'];
+                cell2.textContent = data['recette'];
+                cell3.textContent = data['totalCueillette'];
+                cell4.textContent = data['totalDepense'];
+                cell5.textContent = data['benefice'];
+                cell6.textContent = data['prixrevient'];
+                //cell7.textContent = data[i].poids;
+                //cell8.textContent = data[i].poidsMin;
+
+                //nom": "Cueilleur1",
+        //"genre": "undefined",
+        //"dtn": "1993-02-11",
+        //"montant": "100000.00",
+        //"bonus": "0",
+        //"minus": "5000.00000000",
+        //"poids": 1,
+        //"poidsMin": "100.00"
+                
+                //row.appendChild(cell1);
+                row.appendChild(cell2);
+                row.appendChild(cell3);
+                row.appendChild(cell4);
+                row.appendChild(cell5);
+                row.appendChild(cell6);
+                //row.appendChild(cell7);
+                //row.appendChild(cell8);
+                
+                tbody.appendChild(row);
+            }
+        }
     };
-
-    // Send the POST request with URL-encoded form data
-    var params = "datedeb=" + encodeURIComponent(dateDeb) + "&datefin=" + encodeURIComponent(dateFin);
-    xhr.send(params);
+    
+    // Send the request with parameters
+    xhr.send("datedeb=" + encodeURIComponent(datedeb) + "&datefin=" + encodeURIComponent(datefin));
 }
 
-// Function to populate the tables with data
-function populateTables(data) {
-    var firstTableBody = document.getElementById("firstTable").getElementsByTagName("tbody")[0];
-    var secondTableBody = document.getElementById("secondTable").getElementsByTagName("tbody")[0];
+// Suppose you have a button with the ID "myButton"
+var button = document.getElementById("showbut");
 
-    // Clear existing rows
-    firstTableBody.innerHTML = '';
-    secondTableBody.innerHTML = '';
-
-    // Populate the first table with the first part of the data
-    Object.keys(data).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + data[key];
-        row.appendChild(cell);
-        firstTableBody.appendChild(row);
-    });
-
-    // Populate the second table with the rest of the data
-    // Assuming there's another set of data that needs to be displayed
-    var secondDataSet = {}; // Replace with actual logic to get the second dataset
-    Object.keys(secondDataSet).forEach(function(key) {
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
-        cell.textContent = key + ": " + secondDataSet[key];
-        row.appendChild(cell);
-        secondTableBody.appendChild(row);
-    });
-}
-
-
+// Now, you can add an event listener to the button that calls your function
+button.addEventListener("click", postData1);
 </script>
   </html>

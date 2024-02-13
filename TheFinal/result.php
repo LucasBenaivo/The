@@ -47,9 +47,9 @@ function updateRendement($start_date, $end_date) {
     if ($result->num_rows > 0) {
         $sql_update = "UPDATE the SET rendement = rendement * 2";
         $mysqli->query($sql_update);
-        echo "Rendement mis à jour avec succès!";
+        //echo "Rendement mis à jour avec succès!";
     } else {
-        echo "Aucun mois trouvé entre les dates spécifiées.";
+        //echo "Aucun mois trouvé entre les dates spécifiées.";
     }
     $stmt-> close();
     $mysqli->close();

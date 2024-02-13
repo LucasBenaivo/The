@@ -143,7 +143,7 @@ https://templatemo.com/tm-570-chain-app-dev
                 <div class="col-md-4">
                   <h4 class="card-title fw-semibold mb-4">THE SAHAMBAVY</h4>
                   <div class="card">
-                    <img src="../assets/form/images/products/b.jpg" class="card-img-top" alt="...">
+                    <img src="../assets/form/images/products/b.jpg" class="card-img-top" alt="..." style="height: 400px">
                     <div class="card-body">
                       <h5 class="card-title">15.2ha</h5>
                       <h5 class="card-title">Nombre de Pied :</h5>
@@ -159,7 +159,7 @@ https://templatemo.com/tm-570-chain-app-dev
                 <div class="col-md-4">
                   <h4 class="card-title fw-semibold mb-4">THE SAHAMBAVY</h4>
                   <div class="card">
-                    <img src="../assets/form/images/products/c.jpg" class="card-img-top" alt="..." style="height:20%">
+                    <img src="../assets/form/images/products/c.jpg" class="card-img-top" alt="..." style="height:400px">
                     <div class="card-body">
                       <h5 class="card-title">15.2ha</h5>
                       <h5 class="card-title">Nombre de Pied :</h5>
